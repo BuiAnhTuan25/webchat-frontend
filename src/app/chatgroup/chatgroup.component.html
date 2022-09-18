@@ -1,0 +1,109 @@
+
+<div class="contain clearfix">
+    <div class="form-heading">
+        <h1>
+            AppChat
+            <span class="material-icons">
+                chat
+            </span>
+        </h1>
+        <div>
+            <span class="material-icons">
+                account_circle
+            </span>
+            <a (click)=profile()>Thông tin người dùng</a>
+        </div>
+
+        <div class="chat-nhom">
+            <span class="material-icons">
+                group
+            </span>
+            <a (click)=chat()>Chat với bạn bè</a>
+        </div>
+        <div class="sign-out">
+            <button id="form-signout" (click)=login()>Đăng xuất</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="people-list" id="people-list">
+            <form (ngSubmit)="addGroup(addForm)" #addForm="ngForm">
+            <input class="add-group form-control" name="addgroup" type="text" id="input-message" ngModel placeholder="Tên nhóm mới">
+            <button class="btn btn-send btn-add" type="submit">Tạo nhóm</button>
+            
+            </form>
+            <hr>
+            <div class="form-search">
+                <div *ngFor="let group of grchat;index as i">
+                    <div class="user">
+                        <a (click)=selectGroup(group.id_groupchat,group.namegroup)>
+                            <div class="pad">{{group.namegroup}}</div>
+                        </a>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+        <div class="form-chat">
+        <div class="select-group">
+            <div class="name-group" id="selectedGroup"></div>
+        </div>
+            <div class="chat-header">
+                <ul *ngFor="let message of messages">
+                    <li class="clearfix">
+                        <div class="fa fa-star" *ngIf="message.sender==id_me && message.receiver==id_group">
+                            {{message.content}}
+                        </div>
+                    </li>
+                    <li class="clearfix">   
+                            <div class="chat-with chat-about" *ngIf="message.receiver==id_group && message.sender!=id_me">
+                                {{message.content}}</div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="clearfix" *ngFor="let chatMessage of websocket.messages">
+                        <div class="fa fa-star" *ngIf="chatMessage.sender==id_me && chatMessage.receiver==id_group">
+                            {{chatMessage.content}}
+                        </div>
+                    </li>
+                    <li class="clearfix" *ngFor="let chatMessage of websocket.messages">
+                        <div class="chat-with chat-about"
+                            *ngIf="chatMessage.receiver==id_group && chatMessage.sender!=id_me">{{chatMessage.content}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
+                <div class="chat-message clearfix">
+                    <textarea type="text" class="form-control" name="message" id="input-message" ngModel
+                        placeholder="Type your message" rows="3"></textarea>
+                    <button id="form-send" type="submit" class="btn-send">Gửi</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-sub">
+            <form>
+                <div class="form-user clearfix">
+                    <h1>Thành viên nhóm</h1>
+                    <div class="member" *ngFor="let user of userGroupChat">
+                        <p>{{user.nameuser}}</p>
+                    
+                    </div>
+                    <div *ngIf="admin==true">
+                        <button class="btn-send btn btn-add-friend" (click)="deleteGroup(id_groupchat)">Xóa nhóm</button>
+                </div>
+                </div>
+                <hr>
+                <div class="add-friend">
+
+                    <button class="add-member btn btn-send" (click)=displayFriends()>Thêm thành viên</button>
+                    <div *ngFor="let friend of friends" class="member">
+                        <div class="user">
+                        <p>{{friend.name}}</p>
+                        <button class="btn-send btn btn-add-friend" (click)=addUserGroupChat(friend.id_friend,friend.name)>Thêm vào nhóm</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

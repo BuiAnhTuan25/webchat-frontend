@@ -1,0 +1,242 @@
+<!-- <div class="contain clearfix">
+  <div class="form-heading">
+    <h1>
+        AppChat
+        <span class="material-icons">
+          chat
+        </span>
+    </h1>
+    <div class="chat-nhom">
+        <span class="material-icons">
+            group
+        </span>
+        <a (click)=chatgroup()>Nhóm chat</a>
+    </div>
+    <div>
+        <span class="material-icons">
+            account_circle
+        </span>
+        <a (click)=chat()>Chat với bạn bè</a>
+    </div>
+
+    <div class="sign-out">
+        
+        <button (click)=login() id="form-signout">Đăng xuất</button>
+    </div>   
+</div>
+
+  <div class="form-profile">
+    <h1>Thông tin người dùng</h1>
+    <div class="form-group">
+     
+        <div class="user">
+          <div class="form-icon">
+            <span class="material-icons">
+              person_pin_circle
+            </span>
+            <i>ID người dùng :</i>
+            <i>{{user.id}}</i>
+
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                person
+              </span>
+              <i>Tên người dùng</i>
+            </div>
+            <i>{{user.name}}</i>
+            <form  #nameForm="ngForm" (ngSubmit)=updateNameUser(nameForm)>
+            <input type="text" class="form-control " name="nameUser" id="input-id" ngModel 
+            placeholder="Nhập tên muốn thay đổi" rows="1">
+            <input type="submit" class="form-update btn btn-primary" value="Thay đổi">
+            </form>
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                account_circle
+              </span>
+              <i>Tên đăng nhập :</i>
+              <i>{{user.username}}</i>
+            </div>
+
+
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                lock
+              </span>
+              <i>Mật khẩu</i>
+            </div>
+            <i>{{user.password}}</i>
+            <form #passwordForm="ngForm" (ngSubmit)="updatePassword(passwordForm)" >
+            <input type="text" class="input" name="password" id="input-id" ngModel 
+            placeholder="Nhập password muốn thay đổi" rows="1">
+            <input type="submit" class="form-update btn btn-primary" value="Thay đổi">
+            </form>
+          </div>
+        </div>
+
+      
+    </div>
+  </div>
+
+  <div class="form-friend">
+    <h1>Bạn bè</h1>
+    <form (ngSubmit)="findUserById(sendForm)" #sendForm="ngForm">
+      <div class="form-search">
+          <input type="text" class="form-control" name="id_find" id="input-id" ngModel
+              placeholder="Nhập ID bạn bè" rows="1">
+
+          <input type="submit" class="btn btn-primary" value="Tìm bạn" >
+          
+      </div> 
+  </form>
+  <ul>
+    <div *ngFor="let userFind of user1">
+      
+      <div *ngIf="check==false">
+        {{userFind.name}}
+      <input type="submit"  (click)="addFriend(userFind.id,userFind.name)" class="form-delete" value="Thêm bạn">
+    </div>
+    <div *ngIf="check==true">
+      {{userFind.name}}
+      <input type="submit"  (click)="deleteFriend(userFind.id)" class="form-delete" value="Xóa bạn">
+    </div>
+  </div>
+  </ul>
+  <div>{{thongBao}}</div>
+    <ul>
+    <div class="friend" *ngFor="let friend of friends">
+      {{friend.name}}
+      <input (click)=deleteFriend(friend.id_friend) type="submit" class="form-delete" value="Xóa bạn">
+    </div>
+  </ul>
+  </div>
+</div> -->
+<div class="contain clearfix">
+  <div class="form-heading">
+    <h1>
+        AppChat
+        <span class="material-icons">
+          chat
+        </span>
+    </h1>
+    <div class="chat-nhom">
+        <span class="material-icons">
+            group
+        </span>
+        <a (click)=chatgroup() id="chat-group">Nhóm chat</a>
+    </div>
+    <div>
+      <span class="material-icons">
+        group
+    </span>
+        <a (click)=chat()>Chat với bạn bè</a>
+    </div>
+
+    <div class="sign-out">
+        
+        <button (click)=login() id="form-signout">Đăng xuất</button>
+    </div>   
+</div>
+
+  <div class="form-profile">
+    <div class="form-info">
+      <h1>Thông tin người dùng</h1>
+    <div class="form-group">
+     
+        <div class="user">
+          <div class="form-icon">
+            <span class="material-icons">
+              person_pin_circle
+            </span>
+            <i>ID người dùng :</i>
+            <i>{{user.id}}</i>
+
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                person
+              </span>
+              <i>Tên người dùng</i>
+            </div>
+             <i>{{user.name}}</i>
+            <form  #nameForm="ngForm" (ngSubmit)=updateNameUser(nameForm)>
+            <input type="text" class="form-control " name="nameUser" id="input-id" ngModel 
+            placeholder="Nhập tên muốn thay đổi" rows="1">
+            <input type="submit" class="form-update btn btn-primary" value="Thay đổi">
+            </form>
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                account_circle
+              </span>
+              <i>Tên đăng nhập :</i>
+               <i>{{user.username}}</i>
+            </div>
+
+
+          </div>
+          <div class="user">
+            <div class="form-icon">
+              <span class="material-icons">
+                lock
+              </span>
+              <i>Mật khẩu</i>
+            </div>
+            <i>{{user.password}}</i>
+            <form #passwordForm="ngForm" (ngSubmit)="updatePassword(passwordForm)" >
+            <input type="text" class="input" name="password" id="input-id" ngModel 
+            placeholder="Nhập password muốn thay đổi" rows="1">
+            <input type="submit" class="form-update btn btn-primary" value="Thay đổi">
+            </form>
+          </div>
+        </div>
+
+      
+    </div>
+    </div>
+   
+
+  <div class="form-friend">
+    <h1>Bạn bè</h1>
+    <form (ngSubmit)="findUserById(sendForm)" #sendForm="ngForm">
+      <div class="form-search">
+          <input type="text" class="form-control" name="id_find" id="input-id" ngModel
+              placeholder="Nhập ID bạn bè" rows="1">
+
+          <input type="submit" class="btn btn-primary" value="Tìm bạn" >
+          
+      </div> 
+  </form>
+  <ul>
+    <div *ngFor="let userFind of user1">
+      
+      <div *ngIf="check==false">
+        {{userFind.name}}
+      <input type="submit"  (click)="addFriend(userFind.id,userFind.name)" class="form-delete" value="Thêm bạn">
+    </div>
+    <div *ngIf="check==true">
+      {{userFind.name}}
+      <input type="submit"  (click)="deleteFriend(userFind.id)" class="form-delete" value="Xóa bạn">
+    </div>
+  </div>
+  </ul>
+  <!-- <div>{{thongBao}}</div> -->
+    <ul>
+    <div class="friend" *ngFor="let friend of friends">
+      {{friend.name}}
+      <input (click)=deleteFriend(friend.id_friend) type="submit" class="form-delete" value="Xóa bạn">
+    </div>
+  </ul>
+  </div>
+</div>
+</div>
+  
+  
+  

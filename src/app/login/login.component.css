@@ -1,0 +1,91 @@
+* {
+    margin: 0px;
+    padding:0px;
+    text-decoration: none;
+}
+
+ul,ol {
+    list-style: none;
+}
+
+.contain {
+    background-image: url(https://vchat.vn/themes/v1/images/bot.png);
+    background-size: cover;
+    width :1000px;
+    height: 600px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+}
+
+#form-login {
+    max-width: 400px;
+    background: rgba(255, 255, 255,0.65);
+    flex-grow: 1;
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 17px 2px rgba(255, 255, 255, 0.8);   
+}
+
+.form-heading {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(2, 63, 71);
+}
+
+.form-heading span {
+    font-size: 50px;
+}
+
+.form-group {
+    border:rgb(2, 63, 71) solid black;
+    border-bottom: 1px solid black; 
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-grow: 1;
+}
+
+.material-icons {
+    padding-right: 5px;
+    color:rgb(8, 109, 168);
+}
+
+.form-input {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: black;
+    width: 330px;
+}
+
+.form-input::placeholder {
+    color: black;
+}
+
+.form-signin {
+    background: transparent;
+    border: 1px solid black;
+    color:rgb(8, 109, 168);
+    width: 100%;
+    text-transform: uppercase;
+    padding: 5px 5px;
+    margin-top: 15px;
+}
+
+.form-signin:hover {
+    border: 1px solid #54a0ff;
+}
+
+.Register { 
+    color:rgb(2, 63, 71);
+    text-decoration: underline;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.Register a:hover {
+    color:red;
+}

@@ -1,0 +1,80 @@
+
+<div class="contain clearfix">
+    <div class="form-heading">
+        <h1>
+            AppChat
+            <span class="material-icons">
+              chat
+            </span>
+        </h1>
+        <div class="chat-nhom">
+            <span class="material-icons">
+                group
+            </span>
+            <a (click)=chatgroup()>Nhóm chat</a>
+        </div>
+        <div>
+            <span class="material-icons">
+                account_circle
+            </span>
+            <a (click)=profile()>Thông tin người dùng</a>
+        </div>
+
+        <div class="sign-out">
+            
+            <button (click)=login() id="form-signout">Đăng xuất</button>
+        </div>   
+    </div>
+    <div class="form-group">
+        <div class="people-list">
+            <div class="form-search" *ngFor="let friend of friends;index as i">
+                <div class="user">
+                    <a (click)="selectUser(friend.name,friend.id_friend)">
+                        <div class="pad">{{friend.name}}</div>
+                        <div class="offline pad" *ngIf="friend.status_friend==0" >Offline</div>
+                        <div class="online pad" *ngIf="friend.status_friend==1" >Online</div>
+                        
+                    </a>
+                </div>
+            </div> 
+        </div>
+    
+        <div class="form-chat">
+            <div class="select-user">
+                <div class="name-user" id="selectedUserId"></div>
+            </div>
+            <div class="chat-history">
+            <div class="chat-header">
+                <ul *ngFor="let message of messages">
+                    <li class="clearfix">
+                       <div class="chat-about" *ngIf="message.sender==id_me && message.receiver==id_friend">{{message.content}}</div>
+                    </li>
+                    <li class="clearfix">
+                       <div class="fa fa-star" *ngIf="message.sender==id_friend && message.receiver==id_me">{{message.content}}</div>
+                   </li>
+            </ul> 
+            <ul>
+                <li class="clearfix" *ngFor="let chatMessage of websocket.messages">
+                    <div class="chat-about" *ngIf="chatMessage.sender==id_me && chatMessage.receiver==id_friend">{{chatMessage.content}}
+                    </div>
+                </li>
+                <li class="clearfix" *ngFor="let chatMessage of websocket.messages">
+                    <div class="fa fa-star"*ngIf="chatMessage.sender==id_friend && chatMessage.receiver==id_me">{{chatMessage.content}}
+                    </div>
+                </li>
+            </ul>
+            </div>
+            </div>
+            
+            <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm"> 
+            <div class="form-chat-message clearfix">
+                <textarea class="form-control" id="input-message" name="message" ngModel placeholder="Nhập tin nhắn..." rows="3"></textarea>
+
+                <button id="form-send" class="btn-send" type="submit">Gửi</button>
+    
+            </div>
+            </form>
+        </div> 
+        
+    </div>
+</div>
